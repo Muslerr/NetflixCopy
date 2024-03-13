@@ -1,16 +1,20 @@
 .search-page {
     padding: 20px;
+    margin-left: 2%;
   
     .selectors-and-search {
       display: flex;
+      
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
   
       .search-input {
         input[type='text'] {
-          width: 100%;
+          width: 90%;
+          background-color: var(--main-color);
           padding: 10px;
+          margin-right: 10px;
           font-size: 16px;
           border: 1px solid #ccc;
           border-radius: 5px;
@@ -25,7 +29,9 @@
   
         .selector {
           select {
-            width: 120px;
+            width: 12vw;
+            color :white;
+            background-color: var(--main-color);
             padding: 8px;
             font-size: 14px;
           }
@@ -34,8 +40,8 @@
     }
   
     .content-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 20px;
   
       .content-item {

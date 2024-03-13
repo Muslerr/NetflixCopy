@@ -9,11 +9,11 @@ import { axios } from '../../imports';
 import './SearchPage.scss';
 
 const SearchPage = () => {
-  const [currOrder, setCurrOrder] = useState('az');
+  const [currOrder, setCurrOrder] = useState('a-z');
   const [currGenre, setCurrGenre] = useState('All');
   const [currQuery, setCurrQuery] = useState('');
 
-  const [orders, setOrders] = useState(['yr', 'az', 'za']);
+  const [orders, setOrders] = useState(['year', 'a-z', 'z-a']);
   const [genres, setGenres] = useState([]);
   const [content, setContent] = useState([]);
   const [filteredContent, setFilteredContent] = useState([]);
@@ -52,56 +52,73 @@ const SearchPage = () => {
   }, []);
 
   useEffect(() => {
-    getFilteredContent();
-  }, [currQuery, currGenre, currOrder]);
-
+    const getFilteredContent = () => {
+      try {
+        setLoading(true);
+  
+        let filteredContent = content.slice(); // Create a shallow copy of content array
+        
+        // Filtering
+        if (currQuery !== '') {
+          filteredContent = filteredContent.filter((c) => c.title.toLowerCase().includes(currQuery.toLowerCase()));
+        }
+        if (currGenre !== 'All') {
+          filteredContent = filteredContent.filter((c) => c.genre === currGenre);
+        }
+        
+        // Sorting
+        switch (currOrder) {
+          case 'a-z':
+            filteredContent.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case 'z-a':
+            filteredContent.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+          case 'year':
+            filteredContent.sort((a, b) => a.year.localeCompare(b.year));
+            break;
+          default:
+            break;
+        }
+  
+        setLoading(false);
+        return filteredContent;
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setLoading(false);
+        return []; // Return empty array in case of error
+      }
+    };
+  
+    const updatedFilteredContent = getFilteredContent();
+    setFilteredContent(updatedFilteredContent);
+  }, [content, currQuery, currGenre, currOrder]);
+  
+  
   const handleSearchChange = (e) => {
     setCurrQuery(e.target.value);
+   
   };
 
   const handleGenreChange = (e) => {
     setCurrGenre(e.target.value);
+    
   };
 
   const handleOrderChange = (e) => {
     setCurrOrder(e.target.value);
+    
   };
 
-  const getFilteredContent = () => {
-    try {
-      setLoading(true);
-
-      let filteredContent = content;
-      if (currQuery !== '') {
-        filteredContent = filteredContent.filter((c) => c.title.toLowerCase().includes(currQuery.toLowerCase()));
-      }
-      if (currGenre !== 'All') {
-        filteredContent = filteredContent.filter((c) => c.genre === currGenre);
-      }
-      switch (currOrder) {
-        case 'az':
-          filteredContent.sort((a, b) => a.title.localeCompare(b.title));
-          break;
-        case 'za':
-          filteredContent.sort((a, b) => b.title.localeCompare(a.title));
-          break;
-        case 'yr':
-          filteredContent.sort((a, b) => a.year.localeCompare(b.year));
-      }
-
-      setFilteredContent(filteredContent);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setError(error);
-      setLoading(false);
-    }
-  };
+  
 
   return (
+    <>
+    <Navbar />
     <div className='search-page'>
       <Title title='Search Page' />
-      <Navbar />
+      
       <br />
       <br />
       <br />
@@ -118,6 +135,7 @@ const SearchPage = () => {
           </div>
           <div className='selector'>
             <select className='order-selector' onChange={handleOrderChange}>
+            <option value="" disabled selected>Order by</option> 
               {orders.map((order, index) => (
                 <option key={index} value={order}>
                   {order}
@@ -148,6 +166,7 @@ const SearchPage = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
