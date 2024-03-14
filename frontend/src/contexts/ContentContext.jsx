@@ -12,9 +12,10 @@ export const ContentProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { get } = useUser();
-  const userInfo = get();
+  let userInfo=get();
 
   const getData = async (title) => {
+    userInfo = get();
     try {
       setLoading(true);
       if (title === "Movies" || title === "Series") {
@@ -59,6 +60,7 @@ export const ContentProvider = ({ children }) => {
   };
 
   const getMyList = async () => {
+   
     try {
       const response = await axios.get( `/api/v1/users/getMyList/${userInfo._id}`,
         {
@@ -90,6 +92,7 @@ export const ContentProvider = ({ children }) => {
   };
 
   const removeItemFromMyList = async (content) => {
+    
     console.log("Removing item from list");
     try {
       const response = await axios.post(

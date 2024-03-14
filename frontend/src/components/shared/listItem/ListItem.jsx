@@ -1,22 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
-import YouTube from 'react-youtube';
+import React, { useState, useRef, useEffect } from "react";
+import YouTube from "react-youtube";
 import "./ListItem.scss";
 import { Link } from "react-router-dom";
-import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from "@mui/icons-material/Check";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import { useContent } from '../../../contexts/ContentContext.jsx';
+import { useContent } from "../../../contexts/ContentContext.jsx";
 
 const ListItem = ({ content }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const {addItemToMyList,removeItemFromMyList ,myList} = useContent();
+  const { addItemToMyList, removeItemFromMyList, myList } = useContent();
   const hoverTimeoutRef = useRef(null);
   const hoverStartTimeRef = useRef(null);
   const [isInMyList, setIsInMyList] = useState();
 
   const opts = {
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     playerVars: {
       autoplay: 1,
       controls: 0,
@@ -52,47 +52,48 @@ const ListItem = ({ content }) => {
       hoverTimeoutRef.current = requestAnimationFrame(handleHoverTimeout);
     }
   };
-  
+
   const isContentInList = () => {
     return myList.some((item) => item._id === content._id);
   };
-  const addItem = async()=>{
+  const addItem = async () => {
     await addItemToMyList(content);
-  }
-  
-  const removeItem = async()=>{
+  };
+
+  const removeItem = async () => {
     await removeItemFromMyList(content);
-  }
-  
+  };
+
   useEffect(() => {
-     setIsInMyList(isContentInList());
+    setIsInMyList(isContentInList());
   }, [myList]);
-  
+
   // {isHovered ? "listItem hover" : "listItem"}
   return (
     <div
-    className={`listItem ${isHovered ? 'hover' : ''}`}
+      className={`listItem ${isHovered ? "hover" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {!isHovered && (
-        <img className="img" src={content.img} alt={content.title}></img>
+        <>
+          <div className="spa">{content.title}</div>
+          <img className="img" src={content.img} alt={content.title}></img>
+        </>
       )}
       {isHovered && (
         <>
-          <div >
+          <div>
             <YouTube videoId={videoID} opts={opts} />
           </div>
           <div className="itemInfo">
             <div className="icons">
               <Link to={`/fullscreen/${videoID}`}>
-              <PlayArrowOutlinedIcon fontSize="large" className="icon"  />
+                <PlayArrowOutlinedIcon fontSize="large" className="icon" />
               </Link>
               {isInMyList ? (
-               
                 <CheckIcon className="icon" onClick={removeItem} />
               ) : (
-                
                 <AddOutlinedIcon className="icon" onClick={addItem} />
               )}
             </div>

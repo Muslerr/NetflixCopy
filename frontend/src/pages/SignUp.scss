@@ -1,6 +1,5 @@
-// Background and general styles
 .small-container {
-    background: rgba(0,0,0,0.75) ;
+    background: rgba(0,0,0,0.75);
     background-size: cover;
     height: 80% !important;
     box-sizing: border-box;
@@ -15,94 +14,85 @@
     display: flex !important; 
     flex-direction: column; 
     justify-content: center !important; 
-    align-items: center ; 
+    align-items: center; 
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
-    
-    // Title styles
-    .my-3 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-    }
-    
-    // Form styles
-    form {
-      margin-top: 30px;
-    }
-    
-    // Label styles
-    form label {
-      color: #fff;
-      font-size: 1rem;
-    }
-    
-    // Input styles
-    form input[type="email"]{
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      margin-bottom: 15px;
-      width: 100%;
-      font-size: 1rem;
-    }
   
-    form input[type='text']{
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      margin-bottom: 15px;
-      width: 100%;
-      font-size: 1rem;
-    }
+  // Title styles
+  .my-3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
   
-    form input[type="password"] {
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      margin-bottom: 15px;
-      width: 100%;
-      font-size: 1rem;
-    }
-    
-    // Button styles
-    form button {
-      background: #e50914;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      width: 107%;  
+  // Form styles
+  form {
+    margin-top: 30px;
+  }
   
-    }
-    
-    // Button hover effect
-    form button:hover {
-      background: #ff3e5a;
-    }
-    
-    // Link styles
-    .mb-3 {
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    
-    .mb-3 a {
-      color: #fff;
-      text-decoration: none;
-    }
-    
-    .mb-3 a:hover {
-      text-decoration: underline;
-    }
+  // Label styles
+  form label {
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  // Input styles
+  .form-control.text1 {
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  form input[type="email"],
+  form input[type="password"],
+  form input[type="number"]{
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  // Button styles
+  form button {
+    background: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 107%;  
+  }
+  
+  // Button hover effect
+  form button:hover {
+    background: #ff3e5a;
+  }
+  
+  // Link styles
+  .mb-3 {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .mb-3 a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .mb-3 a:hover {
+    text-decoration: underline;
+  }
+  

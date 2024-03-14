@@ -1,7 +1,7 @@
 import Alert from "react-bootstrap/Alert";
 import PropTypes from "prop-types";
-const MessageBox = ({ variant, children }) => {
-  return <Alert variant={variant || "info"}>{children}</Alert>;
+const MessageBox = ({error}) => {
+  return <h1>something went wrong please refresh and try again {error.message}</h1> ;
 };
-MessageBox.propTypes = { variant: PropTypes.string, children: PropTypes.node };
+
 export default MessageBox;

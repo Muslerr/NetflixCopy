@@ -15,7 +15,7 @@ const ContentPage = ({ title }) => {
   const { genres, lists, loading, error, getData } = useContent();
   const [randomContent, setRandomContent] = useState();
   useEffect(() => {
-    getData(title, userInfo);
+    getData(title);
   }, [title]);
   useEffect(() => {
     if (lists.length > 0) {
@@ -48,7 +48,7 @@ const ContentPage = ({ title }) => {
         {loading ? (
           <Loading />
         ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
+          <MessageBox error={error} ></MessageBox>
         ) : (
           <div className="page-lists">
             {lists ? (
