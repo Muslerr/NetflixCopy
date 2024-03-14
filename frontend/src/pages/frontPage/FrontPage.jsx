@@ -9,7 +9,9 @@ import LanguageSelector from "../../components/shared/languageSelector/LanguageS
 
 const FrontPage = () => {
   const [ email, setEmail ] = useState();
-  const handleStart = () => {};
+  const handleStart = () => {
+    navigate("/signUp")
+  };
   const navigate=useNavigate();
   const location=useLocation();
   
