@@ -77,7 +77,7 @@ const ListItem = ({ content }) => {
     >
       {!isHovered && (
         <>
-          <div className="spa">{content.title}</div>
+          {/* <div className="spa">{content.title}</div> */}
           <img className="img" src={content.img} alt={content.title}></img>
         </>
       )}
